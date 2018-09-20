@@ -11,29 +11,23 @@ session_start();
 
 if (isset($_POST['submit'])) {
 
-	$loginCredentials = [
-		"username" => "Hampus.bjorn",
-		"password" => "secure"
-	];
+	include 'db.php';
 
 	if (isset($_POST['username']) && isset($_POST['password'])) {
+
 		$username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-		$hash = $password;
+		$password = $_POST['password'];
 
-			if ($username == $loginCredentials['username'] && $password == password_verify($loginCredentials['password'], $hash)) {
-				echo "<h1>Välkommen till alla hemliga saker</h1>";
-			}
+		$statement = $dbh->query("SELECT * FROM login");
+		$row = $statement->fetch(PDO::FETCH_ASSOC);
 
-			elseif ($username != $loginCredentials['username'] || $password != password_verify($loginCredentials['password'], $hash)) {
-				echo "<h1>Användarnamn eller lösenord är fel</h1>";
-			}
-
-			else {
-				echo "<h1>FEL!</h1>";
-			}
+		if ($username == $row['username'] && password_verify($password, $row['password'])) {
+			echo "<h1>Välkommen till alla hemliga saker</h1>";
+		}
+		else {
+			echo "<h1>FEL!</h1>";
+		}
 	}
-
 }
 
 else {
