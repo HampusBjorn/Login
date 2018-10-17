@@ -45,7 +45,10 @@
 		$storyrow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		//echo "<pre>" . print_r($storyrow,1) . "</pre>";
+		echo "<fieldset>";
+		echo "<legend>YOUR MIND</legend>";
 		echo "<p>" . $storyrow['text'] . "</p>";
+		echo "</fieldset>";
 
 		$stmt = $dbh->prepare("SELECT * FROM storylinks WHERE storyid = :id");
 		$stmt->bindParam(':id', $filteredPage);
@@ -72,7 +75,7 @@
 	echo '
 		<div class="roomDesPos">
 			<fieldset class="roomDes">
-				<legend>Room</legend>
+				<legend>Room + Story</legend>
 				'
 				?>
 				<?php
@@ -83,7 +86,7 @@
 				<?php echo '
 				</fieldset>
 				<form action="" method="POST">
-					<input type="text" name="input_value" id="input" autocomplete="off" autofocus>
+					<input type="text" name="input_value" id="input" autocomplete="off" autofocus placeholder="ditt val!">
 					<input class="submit" type="submit" name="submit" ismap="submit" value="Submit">
 				</form>
 		</div>
