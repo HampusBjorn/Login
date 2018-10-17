@@ -44,26 +44,26 @@
 		$stmt->execute();
 		$storyrow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		echo "<pre>" . print_r($storyrow,1) . "</pre>";
+		//echo "<pre>" . print_r($storyrow,1) . "</pre>";
 		echo "<p>" . $storyrow['text'] . "</p>";
 
-		$stmt = $dbh->prepare("SELECT * FROM storylinks WHERE storyid = 1");
+		$stmt = $dbh->prepare("SELECT * FROM storylinks WHERE storyid = :id");
 		$stmt->bindParam(':id', $filteredPage);
 		$stmt->execute();
 		$row = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
-		foreach ($row as $val) {
-					echo "<a href=\"?page=" . $val['target'] . "\">" . $val['text'] . " </a>";
-		}
+		/*foreach ($row as $val2) {
+			echo "<br><p>" . $val2['text'] . "</p><br>";
+		}*/
 
-		echo "<p>Requested page " . $filteredPage . "</p>";
+		echo "<br><p>page " . $filteredPage . "</p>";
 
 		echo "<a class='closeBok' href='/Webserver/Hemlig/Solo/play.php'>" . 'Close Book' . "</a>";
 	} elseif(isset($_SESSION['page'])) {
 		// TODO load page from db
 		// use for returning player / cookie
 	} else {
-		echo "<a href='?page=1'>" . 'Open Book ' . "</a>";
+		echo "<a href='?page=1' class='openBok'>" . 'Open Book 1' . "</a>";
 	}
 ?>
 </section>
@@ -77,14 +77,29 @@
 				?>
 				<?php
 				if (isset($_GET['page'])) {
-					echo "<p>" . $storyrow['plats'] . "</p>"; 
+					echo "<p class='roomDesText'>" . $storyrow['plats'] . "</p>"; 
 				}
 				?>
 				<?php echo '
-			</fieldset>
-			<input type="text" name="Go">
+				</fieldset>
+				<form action="" method="POST">
+					<input type="text" name="input_value" id="input" autocomplete="off" autofocus>
+					<input class="submit" type="submit" name="submit" ismap="submit" value="Submit">
+				</form>
 		</div>
 		';
+
+
+		if (isset($_POST['submit'])) {
+			$input = $_POST['input_value'];
+
+		foreach ($row as $val) {
+			if ($input == $val['text']) {
+				header("location: ?page=" . $val['target']);
+			}
+		}
+
+		}
 	}
 	?>
 </main>
