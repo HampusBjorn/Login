@@ -1,12 +1,19 @@
 * {
 	margin: 0;
 	padding: 0;
+	color: #031926;
+}
+
+body {
+	background: #F4E9CD;
+	color: #031926;
+	overflow: hidden;
 }
 
 section {
     position: absolute;
-    left: 50%;
-    top: 2.5vw;
+    left: 34%;
+    top: 4vw;
     transform: translate(-50%,0);
     height: 100%;
     width: 30%;
@@ -16,19 +23,21 @@ section {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%,0);
-	bottom: 10%;
+	bottom: 15%;
+	text-decoration: none;
+	z-index: 10;
 }
 
 .openBok {
 	position: absolute;
 	left: 50%;
-	transform: translate(-50%,0);
 }
 
 .roomDesPos {
 	position: absolute;
-    top: 2.5vw;
-    left: 2.5vw;
+    top: 10vw;
+    left: 34%;
+    transform: translate(-50%,0);
     width: 30%;
     height: 35%;
 }
@@ -38,7 +47,7 @@ legend {
 }
 
 .roomDes{
-    border: 2px solid #000;
+    border: 2px solid #468189;
     width: 100%;
     overflow: hidden;
 }
@@ -55,4 +64,61 @@ form {
 input {
 	height: 10%;
 	width: 100%;
+	background: #9DBEBB;
+	outline: none;
+	border: none;
+	text-align: center;
+	margin-bottom: 1vw;
 }
+
+fieldset {
+	border: 2px solid #468189;
+}
+
+.storyMind {
+	margin-left: 1vw;
+	margin-right: 1vw; 
+}
+
+.Book {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	width: 70%;
+	z-index: -1;
+}
+
+.page {
+	position: absolute;
+	bottom: 6.5%;
+	left: 23%;
+	transform: translate(-50%,0);
+
+}
+
+.mainsubmit{
+	background: #fff;
+	margin-top:45vh;
+	height: 2vw;
+	font-size: 1.5vw;
+	padding-top:0.1vw;
+	padding-bottom:0.1vw; 
+	border-bottom: 2px solid #031926;
+}
+
+.submit{
+	border-radius: 1vw;
+	width: 50%;
+	margin-left: 50%;
+	transform: translate(-50%,0);
+	height: 2vw;
+}
+
+.Book_closed {
+	position: absolute;
+	top: -3vw;
+	z-index: -1;
+	width: 35vw;
+}
+

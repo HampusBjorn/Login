@@ -7,8 +7,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
 	<title>Soloäventyr - Spela</title>
-	<link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans" rel="stylesheet"> 
-	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/add.css">
 </head>
 <body>
@@ -16,8 +16,14 @@
 	<a href="index.php">Hem</a>
 	<a class="active" href="play.php">Spela</a>
 	<a href="edit.php">Redigera</a>
-</nav>
--->
+</nav>-->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<a class="active" href="index.php">Hem</a>
+	<a href="play.php">Spela</a>
+	<a href="edit.php">Redigera</a>
+</div>	
+<span style="font-size:30px;cursor:pointer;position: absolute;top: 0;right: 25px;font-size: 36px;margin-left: 50px;" onclick="openNav()">&#9776;</span>
 <main class="content">
 	<section>
 <!--
@@ -45,9 +51,9 @@
 		$storyrow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		//echo "<pre>" . print_r($storyrow,1) . "</pre>";
-		echo "<fieldset>";
+		echo "<fieldset class='mind'>";
 		echo "<legend>YOUR MIND</legend>";
-		echo "<p>" . $storyrow['text'] . "</p>";
+		echo "<p class='storyMind'>" . $storyrow['text'] . "</p>";
 		echo "</fieldset>";
 
 		$stmt = $dbh->prepare("SELECT * FROM storylinks WHERE storyid = :id");
@@ -59,20 +65,20 @@
 			echo "<br><p>" . $val2['text'] . "</p><br>";
 		}*/
 
-		echo "<br><p>page " . $filteredPage . "</p>";
+		
 
-		echo "<a class='closeBok' href='/Webserver/Hemlig/Solo/play.php'>" . 'Close Book' . "</a>";
+		echo "<a class='closeBok' href='play.php'>" . 'Close Book' . "</a>";
 	} elseif(isset($_SESSION['page'])) {
 		// TODO load page from db
 		// use for returning player / cookie
 	} else {
-		echo "<a href='?page=1' class='openBok'>" . 'Open Book 1' . "</a>";
+		echo "<a href='?page=1' class='openBok'>" . "<img src='Book_closed_1.svg' class='Book_closed'>" . "</a>";
 	}
 ?>
 </section>
 	<?php 
 	if (isset($_GET['page'])) {
-	echo '
+	echo ' <img src="Book.svg" class="Book">
 		<div class="roomDesPos">
 			<fieldset class="roomDes">
 				<legend>Room + Story</legend>
@@ -86,11 +92,10 @@
 				<?php echo '
 				</fieldset>
 				<form action="" method="POST">
-					<input type="text" name="input_value" id="input" autocomplete="off" autofocus placeholder="ditt val!">
+					<input class="mainsubmit" type="text" name="input_value" id="input" autocomplete="off" autofocus placeholder="ditt val!" required>
 					<input class="submit" type="submit" name="submit" ismap="submit" value="Submit">
 				</form>
-		</div>
-		';
+		</div> <br><p class="page">page' . $filteredPage . '</p>';
 
 
 		if (isset($_POST['submit'])) {
