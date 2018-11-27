@@ -4,27 +4,29 @@
 <!doctype html>
 <html lang="se">
 <head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
 	<title>Soloäventyr - Spela</title>
 	<link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/add.css">
 </head>
-<body>
-<!--<nav id="navbar">
-	<a href="index.php">Hem</a>
-	<a class="active" href="play.php">Spela</a>
-	<a href="edit.php">Redigera</a>
-</nav>-->
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	<a class="active" href="index.php">Hem</a>
-	<a href="play.php">Spela</a>
-	<a href="edit.php">Redigera</a>
-</div>	
-<span style="font-size:30px;cursor:pointer;position: absolute;top: 0;right: 25px;font-size: 36px;margin-left: 50px;" onclick="openNav()">&#9776;</span>
-<main class="content">
+<body style="height: 100vh; overflow: hidden;">
+	<a class="navbar-brand" href="index.php" style="position: absolute; left: 0; top: 1vh;">
+    <img src="Lifeless2.svg" width="120" height="40" alt="">
+  </a>
+<ul class="nav nav-pills justify-content-center" style="margin-top: 1vh;">
+  <li class="nav-item">
+    <a class="nav-link" href="index.php">Hem</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="play.php?page=1">Spela</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="edit.php">Redigera</a>
+  </li>
+</ul>
+<div class="h-100 container"><div class=" h-100 row justify-content-md-center">
+    <div class="h-auto col-6" style="margin-top: 10vh" >
 	<section>
 <!--
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit hic aliquid nostrum quibusdam veritatis? Eaque accusantium odit id deserunt, quae minima adipisci nesciunt illum ipsa ea placeat, earum laboriosam corrupti.</p>
@@ -52,7 +54,11 @@
 
 		//echo "<pre>" . print_r($storyrow,1) . "</pre>";
 		echo "<fieldset class='mind'>";
+		echo '<div class="col-md-auto">
+			<blockquote class="blockquote text-center">';
 		echo "<legend>YOUR MIND</legend>";
+		echo '</blockquote>
+				</div>';
 		echo "<p class='storyMind'>" . $storyrow['text'] . "</p>";
 		echo "</fieldset>";
 
@@ -64,24 +70,24 @@
 		/*foreach ($row as $val2) {
 			echo "<br><p>" . $val2['text'] . "</p><br>";
 		}*/
-
-		
-
-		echo "<a class='closeBok' href='play.php'>" . 'Close Book' . "</a>";
 	} elseif(isset($_SESSION['page'])) {
 		// TODO load page from db
 		// use for returning player / cookie
 	} else {
-		echo "<a href='?page=1' class='openBok'>" . "<img src='Book_closed_1.svg' class='Book_closed'>" . "</a>";
+		echo "<a href='?page=1' class='openBok'>" . "Open Book" . "</a>";
 	}
 ?>
 </section>
 	<?php 
 	if (isset($_GET['page'])) {
-	echo ' <img src="Book.svg" class="Book">
+	echo '
 		<div class="roomDesPos">
 			<fieldset class="roomDes">
+			<div class="col-md-auto">
+			<blockquote class="blockquote text-center">
 				<legend>Room + Story</legend>
+				</blockquote>
+				</div>
 				'
 				?>
 				<?php
@@ -91,10 +97,13 @@
 				?>
 				<?php echo '
 				</fieldset>
+				<div class="col-md-auto">
+			<blockquote class="blockquote text-center">
 				<form action="" method="POST">
 					<input class="mainsubmit" type="text" name="input_value" id="input" autocomplete="off" autofocus placeholder="ditt val!" required>
-					<input class="submit" type="submit" name="submit" ismap="submit" value="Submit">
-				</form>
+					<input class="btn btn-primary" type="submit" name="submit"  ismap="submit" value="Submit">
+				</form></blockquote>
+				</div>
 		</div> <br><p class="page">page' . $filteredPage . '</p>';
 
 
@@ -110,7 +119,8 @@
 		}
 	}
 	?>
-</main>
+
+</div>
 <script src="js/navbar.js"></script>
 
 </body>

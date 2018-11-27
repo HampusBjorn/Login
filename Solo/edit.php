@@ -4,28 +4,32 @@
 <!doctype html>
 <html lang="se">
 <head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
 	<title>Soloäventyr - Redigera</title>
 	<link href="https://fonts.googleapis.com/css?family=Merriweather|Merriweather+Sans" rel="stylesheet"> 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/addEdit.css">
 </head>
-<body>
-<!--<nav id="navbar">
-	<a href="index.php">Hem</a>
-	<a href="play.php">Spela</a>
-	<a class="active" href="edit.php">Redigera</a>
-</nav>-->
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	<a class="active" href="index.php">Hem</a>
-	<a href="play.php">Spela</a>
-	<a href="edit.php">Redigera</a>
-</div>	
-<span style="font-size:30px;cursor:pointer;position: absolute;top: 0;right: 25px;font-size: 36px;margin-left: 50px;" onclick="openNav()">&#9776;</span>
-<main class="content">
+<body style="height: 100vh; overflow: hidden;">
+		<a class="navbar-brand" href="index.php" style="position: absolute; left: 0; top: 1vh;">
+    <img src="Lifeless2.svg" width="120" height="40" alt="">
+  </a>
+<ul class="nav nav-pills justify-content-center" style="margin-top: 1vh;">
+  <li class="nav-item">
+    <a class="nav-link" href="index.php">Hem</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="play.php?page=1">Spela</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="edit.php">Redigera</a>
+  </li>
+</ul>
+<div class="h-100 container"><div class=" h-100 row justify-content-md-center">
+    <div class="h-auto col-8" style="margin-top: 10vh">
 	<section>
+		<div class="col-md-auto">
+			<blockquote class="blockquote text-center">
 		<h1>Redigera</h1>
 
 <?php
@@ -45,7 +49,7 @@
 				</p>
 			</div>
 				<p class="login-pos">
-					<input class="submit" type="submit" name="login" ismap="login" value="Logga in">
+					<input class="btn btn-primary" type="submit" name="login" ismap="login" value="Logga in">
 				</p>
 		</form>';
 	
@@ -72,7 +76,7 @@
 	if (isset($_SESSION['id'])) {
 
 		echo '<form method="POST">
-			<input type="submit" name="logout" id="logout" value="logga ut">
+			<input class="btn btn-primary" type="submit" name="logout" id="logout" value="logga ut">
 			</form>';
 
 			if (isset($_POST['logout'])) {
@@ -82,7 +86,7 @@
 		if (!isset($_POST['add'])) {
 			echo '<form method="POST">
 			<br><input type="text" name="page" id="page" placeholder="Page?" autocomplete="off" autofocus>
-			<input type="submit" name="submit" id="submit">
+			<input class="btn btn-primary" type="submit" name="submit" id="submit">
 		</form>';
 		}
 		
@@ -103,8 +107,8 @@
 		<textarea type="text" name="plats" id="plats" rows="10" cols="30">' . $storyrow['plats'] . '</textarea>
 		  <input type="hidden" name="page" id="page" value=' . $filteredPage . '> <br>';
 
-		echo '<input type="submit" name="update" id="update" value="Uppdatera">
-		<input type="submit" name="delete" id="delete" value="Radera" onclick=\'return confirm("This is not recommended! Are you sure?")\'>
+		echo '<input class="btn btn-primary" type="submit" name="update" id="update" value="Uppdatera">
+		<input class="btn btn-primary" type="submit" name="delete" id="delete" value="Radera" onclick=\'return confirm("This is not recommended! Are you sure?")\'>
 		</form> <br>
 		<p> Ändra inte det som står inanför b taggarna </p>';
 
@@ -114,7 +118,7 @@
 		if (!isset($_POST['add'])) {
 		 	echo'<form method="POST">
 		<input type="hidden" name="page" id="page" value=' . $_POST["page"] . '><br>
-		<input type="submit" name="add" id="add" value="lägg till">
+		<input class="btn btn-primary" type="submit" name="add" id="add" value="lägg till">
 		</form>';
 		 } 
 	}
@@ -122,7 +126,7 @@
 		if (isset($_POST['add'])) {
 			echo '<form method="POST"><textarea type="text" name="text" id="text" rows="10" cols="30"></textarea>
 		<textarea type="text" name="plats" id="plats" rows="10" cols="30"></textarea>
-		<input type="submit" name="confirm" id="confirm" value="bekräfta"></form>';
+		<input class="btn btn-primary" type="submit" name="confirm" id="confirm" value="bekräfta"></form>';
 		}
 
 
@@ -164,7 +168,12 @@ if(isset($_POST['update'])){
 // add, edit, delete pages & events
 // skriv ut en lista över sidor
 ?>
-</main>
+</blockquote>
+</div>
+</section>
+</div>
+</div>
+</div>
 <script src="js/navbar.js"></script>
 </body>
 </html>
